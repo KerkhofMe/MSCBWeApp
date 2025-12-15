@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Microsoft cloud security benchmark (MCSB v2) - Logging & Threat Detection{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="header-text">
+                <h1>Microsoft cloud security benchmark (MCSB v2)</h1>
+                </h1>
+                <p class="subtitle">Logging & Threat Detection Controls</p>
+            </div>
+            <div class="language-switcher">
+                <a href="{{ url_for('set_language', lang='nl') }}" class="lang-btn {% if lang == 'nl' %}active{% endif %}" title="Nederlands">
+                    <svg class="flag-icon" viewBox="0 0 640 480">
+                        <rect width="640" height="160" fill="#AE1C28"/>
+                        <rect y="160" width="640" height="160" fill="#FFF"/>
+                        <rect y="320" width="640" height="160" fill="#21468B"/>
+                    </svg>
+                    <span>NL</span>
+                </a>
+                <a href="{{ url_for('set_language', lang='en') }}" class="lang-btn {% if lang == 'en' %}active{% endif %}" title="English">
+                    <svg class="flag-icon" viewBox="0 0 640 480">
+                        <rect width="640" height="480" fill="#012169"/>
+                        <path d="M0 0l640 480M640 0L0 480" stroke="#FFF" stroke-width="60"/>
+                        <path d="M0 0l640 480M640 0L0 480" stroke="#C8102E" stroke-width="40"/>
+                        <path d="M320 0v480M0 240h640" stroke="#FFF" stroke-width="100"/>
+                        <path d="M320 0v480M0 240h640" stroke="#C8102E" stroke-width="60"/>
+                    </svg>
+                    <span>EN</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        {% if error %}
+        <div class="error-message">
+            <h2>{{ error }}</h2>
+            <a href="{{ url_for('index') }}" class="btn">Terug naar overzicht</a>
+        </div>
+        {% else %}
+        {% block content %}{% endblock %}
+        {% endif %}
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>
+                {{ 'Based on' if lang == 'en' else 'Gebaseerd op' }} 
+                <a href="https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-logging-threat-detection" target="_blank">Microsoft Cloud Security Benchmark v2</a>
+                &middot; 
+                {{ 'Built by' if lang == 'en' else 'Gebouwd door' }} Joey Kerkhof
+                &middot; 
+                {{ 'Version' if lang == 'en' else 'Versie' }} 0.1
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

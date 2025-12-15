@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="intro">
+    <h2>{{ 'Security Domains' if lang == 'en' else 'Security Domeinen' }}</h2>
+    <p>{{ 'The Microsoft cloud security benchmark v2 includes 12 security domains. Click on a domain to view all related controls and Microsoft implementation guidance.' if lang == 'en' else 'De Microsoft cloud security benchmark v2 bevat 12 security domeinen. Klik op een domein om alle gerelateerde controls en Microsoft implementatie richtlijnen te bekijken.' }}</p>
+</section>
+
+<section class="categories-grid">
+    {% for category in categories %}
+    <a href="{{ url_for('category_detail', category_id=category.id) }}" class="category-card" style="--card-color: {{ category.color }}">
+        <div class="category-icon">{{ category.icon }}</div>
+        <div class="category-content">
+            <div class="category-id">{{ category.id }}</div>
+            <h3>{{ category.name }}</h3>
+            <p>{{ category.description[:120] }}{% if category.description|length > 120 %}...{% endif %}</p>
+        </div>
+        <div class="category-arrow">→</div>
+    </a>
+    {% endfor %}
+</section>
+{% endblock %}

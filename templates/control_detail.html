@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ control.id }} - {{ control.name }}{% endblock %}
+
+{% block content %}
+<nav class="breadcrumb">
+    <a href="{{ url_for('home') }}">{{ 'Home' if lang == 'en' else 'Home' }}</a>
+    <span class="breadcrumb-separator">›</span>
+    <a href="{{ url_for('category_detail', category_id=category.id) }}">{{ category.name }}</a>
+    <span class="breadcrumb-separator">›</span>
+    <span>{{ control.id }}</span>
+</nav>
+
+<article class="control-detail" style="--category-color: {{ category.color }}">
+    <header class="control-header">
+        <span class="control-badge" style="background: {{ category.color }}">{{ control.id }}</span>
+        <h2>{{ control.name }}</h2>
+    </header>
+    
+    <section class="control-description">
+        <h3>📋 {{ 'Description' if lang == 'en' else 'Beschrijving' }}</h3>
+        <p>{{ control.description }}</p>
+    </section>
+    
+    <section class="microsoft-solutions">
+        <h3>🛠️ {{ 'Microsoft Implementation Solutions' if lang == 'en' else 'Microsoft Implementatie Oplossingen' }}</h3>
+        <div class="solutions-grid">
+            {% for solution in control.microsoft_solutions %}
+            <div class="solution-card">
+                <h4>{{ solution.name }}</h4>
+                <p>{{ solution.description }}</p>
+                <a href="{{ solution.link }}" target="_blank" class="btn btn-secondary">
+                    📖 {{ 'View Documentation' if lang == 'en' else 'Bekijk Documentatie' }}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+    <section class="implementation-steps">
+        <h3>🚀 {{ 'Quick Start Implementation' if lang == 'en' else 'Quick Start Implementatie' }}</h3>
+        <div class="steps">
+            {{ control.implementation_steps | safe }}
+        </div>
+    </section>
+</article>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav class="breadcrumb">
+    <a href="{{ url_for('home') }}">← {{ 'Back to all domains' if lang == 'en' else 'Terug naar alle domeinen' }}</a>
+</nav>
+
+<section class="intro category-intro-compact" style="--category-color: {{ category.color if category else '#0078d4' }}">
+    <span class="category-header-icon-small">{{ category.icon if category else '🔍' }}</span>
+    <h2>{{ category.name if category else 'Logging & Threat Detection' }}</h2>
+</section>
+
+{% if controls and controls|length > 0 %}
+<section class="controls-table">
+    <table>
+        <thead>
+            <tr>
+                <th>Control ID</th>
+                <th>{{ 'Name' if lang == 'en' else 'Naam' }}</th>
+                <th>{{ 'Description' if lang == 'en' else 'Beschrijving' }}</th>
+                <th>{{ 'Action' if lang == 'en' else 'Actie' }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for control in controls %}
+            <tr>
+                <td class="control-id">
+                    <a href="{{ url_for('control_detail', category_id=category.id, control_id=control.id) }}">{{ control.id }}</a>
+                </td>
+                <td class="control-name">{{ control.name }}</td>
+                <td class="control-desc">{{ control.description[:150] }}{% if control.description|length > 150 %}...{% endif %}</td>
+                <td class="control-action">
+                    <a href="{{ url_for('control_detail', category_id=category.id, control_id=control.id) }}" class="btn btn-primary">
+                        {{ 'View Details →' if lang == 'en' else 'Bekijk Details →' }}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% else %}
+<section class="coming-soon">
+    <div class="coming-soon-content">
+        <div class="coming-soon-icon">🚧</div>
+        <h3>{{ 'Coming Soon' if lang == 'en' else 'Binnenkort Beschikbaar' }}</h3>
+        <p>{{ 'The controls for this security domain are currently being developed. Check back soon!' if lang == 'en' else 'De controls voor dit security domein worden momenteel ontwikkeld. Kom binnenkort terug!' }}</p>
+        <a href="{{ url_for('home') }}" class="btn btn-primary">{{ 'Back to Overview' if lang == 'en' else 'Terug naar Overzicht' }}</a>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
