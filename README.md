@@ -34,7 +34,7 @@ Open http://localhost:5000 in your browser.
 | PA | Privileged Access | 🚧 Coming Soon |
 | DP | Data Protection | 🚧 Coming Soon |
 | AM | Asset Management | 🚧 Coming Soon |
-| LT | Logging and Threat Detection | ✅ Complete |
+| LT | Logging and Threat Detection | ✅ Compplete - but still need to add technical stuff. |
 | IR | Incident Response | 🚧 Coming Soon |
 | PV | Posture and Vulnerability Management | 🚧 Coming Soon |
 | ES | Endpoint Security | 🚧 Coming Soon |
@@ -51,7 +51,3 @@ Open http://localhost:5000 in your browser.
 ## 📖 References
 
 - [Microsoft Cloud Security Benchmark v2](https://learn.microsoft.com/en-us/security/benchmark/azure/overview)
-
-## 👤 Author
-
-Built by Joey Kerkhof
